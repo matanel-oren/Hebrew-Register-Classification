@@ -6,7 +6,7 @@ The goal of this project is to develop a classifier that can distinguish between
 
 ## The problem
 
-For more information about registers generally in language see [Register](https://en.wikipedia.org/wiki/Register_(sociolinguistics\)), and about Hebrew registers see: [משלב](https://he.wikipedia.org/wiki/%D7%9E%D7%A9%D7%9C%D7%91).
+For more information about registers generally in language see [Register](https://en.wikipedia.org/wiki/Register_(sociolinguistics)), and about Hebrew registers see: [משלב](https://he.wikipedia.org/wiki/%D7%9E%D7%A9%D7%9C%D7%91).
 In the later, the writers have specified 4 distinct register, but since the differences and hence the distinction between the last two are not clear enough (at least for me), I decided to classify into only 3 registers:
 - Formal, לשון גבוהה / מליצית.
 - Standard, לשון תקנית.
