@@ -6,13 +6,13 @@ The goal of this project is to develop a classifier that can distinguish between
 
 ## The problem
 
-One way to examine the texts we read is through the [linguistic register](https://en.wikipedia.org/wiki/Register_(sociolinguistics)) used to write the text. For us as humans it is clear and easy usually to understand what type of language is appropriate for academic writing, poetry and literature writing, news stories, chats or different types of social networks. Moreover, when we encounter a use of an inappropriate 'version' of language to the social context, it will seem strange to us, even without knowing how to put our finger on what exactly is bothering us.
+One way to examine the texts we read is through the [linguistic register](https://en.wikipedia.org/wiki/Register_(sociolinguistics)) used to write the text. For us as humans it is usually clear and easy to understand what type of language is appropriate for academic writing, poetry and literature writing, news stories, chats or different types of social networks. Moreover, when we encounter a use of an inappropriate 'version' of language to the social context, it will seem strange to us, even without knowing how to put our finger on what exactly is bothering us.
 
-Over the years, some works have been done in the field of identifying the register and creating texts according to a desired register, but I do not know any work done on the subject on the Hebrew language.
+Over the years, some works have been done in the field of identifying the register and creating texts according to a desired register, but I do not know any work done on the subject of the Hebrew language.
 
 It is important to note that registers exist in both the spoken language and the written language, but since the spoken language requires additional mediation (and not a simple one at all) so that we can analyze it with a computer, I chose to deal only with the written language.
 
-There are works on the subject that have tried to categorize entire documents by register, but because we (humans) are intuitively able to distinguish the register even on a single sentence, and because sometimes one document uses several different registers, I chose to try classifying each sentence individually.
+There are works on the subject that have tried to classify entire documents by register, but because we (humans) are intuitively able to distinguish the register even on a single sentence, and because sometimes one document uses several different registers, I chose to try classifying each sentence individually.
 
 For more information about Hebrew registers see [משלב](https://he.wikipedia.org/wiki/%D7%9E%D7%A9%D7%9C%D7%91).
 In this entry, the writers have specified 4 distinct register, but since the differences and hence the distinction between the last two (לשון מדוברת and לשון תת-תקנית) are not clear enough (at least for me), I decided to classify into only 3 registers:
@@ -33,7 +33,7 @@ A few examples of those (in Hebrew):
 
 ## Data
 
-The data collecting task was challenging, because one corpus tends to follow the same register through its texts. In terms of registers, data from a single source tends to be identical or very close from a integrator. Examples: In a journal or a newspaper there is an editor who makes sure that the texts are written in a certain style and for a certain readership; in Wikipedia there are [guidelines](https://he.wikipedia.org/wiki/%D7%95%D7%99%D7%A7%D7%99%D7%A4%D7%93%D7%99%D7%94:%D7%A2%D7%A7%D7%A8%D7%95%D7%A0%D7%95%D7%AA_%D7%95%D7%A7%D7%95%D7%95%D7%99%D7%9D_%D7%9E%D7%A0%D7%97%D7%99%D7%9D) that each of the writers should follow; In a group WhatsApp conversation participants tend to talk "at the same height". Furthermore in order to prevent biases, it is recommended that each of them will deal with various topics, thus avoiding the classifier perceiving the wrong phenomenon, i.e. to really classify by topics when we want it to classify by register.
+The data collecting task was challenging, because one corpus tends to follow the same register through its texts. Examples: In a journal or a newspaper there is an editor who makes sure that the texts are written in a certain style and for a certain readership; in Wikipedia there are [guidelines](https://he.wikipedia.org/wiki/%D7%95%D7%99%D7%A7%D7%99%D7%A4%D7%93%D7%99%D7%94:%D7%A2%D7%A7%D7%A8%D7%95%D7%A0%D7%95%D7%AA_%D7%95%D7%A7%D7%95%D7%95%D7%99%D7%9D_%D7%9E%D7%A0%D7%97%D7%99%D7%9D) that each of the writers should follow; In a group WhatsApp conversation participants tend to talk "at the same height". Furthermore, in order to prevent biases, it is recommended that each of them will deal with various topics, thus avoiding the classifier perceiving the wrong phenomenon, i.e. to really classify by topics when we want it to classify by register.
 
 In practice, I used sources that by my understanding supposed to cover all the registers:
 - [Ben Yehuda Project](https://github.com/projectbenyehuda) - a huge library of public domain Hebrew literary texts (copyrights were expired), most of them are very old. Since these are literary works, especially those written at a time when it was more common to write in "high" language, I assumed that it will be a good source for "high" sentences.
@@ -85,9 +85,9 @@ as common.
 
 ### YAP
 
-YAP is an open source morpho-syntactic parser for Hebrew language. It was developed by the [Bar-Ilan University ONLP lab](https://nlp.biu.ac.il/~rtsarfaty/onlp), under the supervision of Prof. Reut Tsarfaty. Currently the best Hebrew parser who is free. The main idea behind it is to apply the morphological and the syntactic analysis at the same time, this for preventing the basic problem of the dependency of morphology and syntax when you come to parse Hebrew texts. YAP documentation and demonstration is available [here](https://nlp.biu.ac.il/~rtsarfaty/onlp/hebrew/), and the code is available [here](https://github.com/OnlpLab/yap)
+YAP is an open source morpho-syntactic parser for the Hebrew language. It was developed by the [Bar-Ilan University ONLP lab](https://nlp.biu.ac.il/~rtsarfaty/onlp), under the supervision of Prof. Reut Tsarfaty. Currently it is the best Hebrew parser who is free. The main idea behind it is to apply the morphological and the syntactic analysis at the same time, this for preventing the basic problem of the dependency of morphology and syntax when you come to parse Hebrew texts. YAP documentation and demonstration is available [here](https://nlp.biu.ac.il/~rtsarfaty/onlp/hebrew/), and its code is available [here](https://github.com/OnlpLab/yap)
 
-The models YAP is based on them are very heavy, and therefore it is written in GO, to achieve a better runtime. The access to it is hence more difficult and done by HTTP requests. Amit Skolnik has written a python wrapper to simplify the process, and I used it.
+The models YAP is based on them are very heavy, and therefore it is written in GO, to achieve a better runtime. The access to it is hence more difficult and done by HTTP requests. Amit Skolnik has written a [python wrapper](https://github.com/amit-shkolnik/YAP-Wrapper) to simplify the process, and I used it.
 
 ### Feature extraction
 
@@ -120,10 +120,10 @@ and normalizing by the length of the sentence.
 
 ### Learning
 
-If we treat the problem as a classic supervised classification problem, one can very easily try many classifiers, with the help of the sklearn library and so I did.
+If we treat the problem as a classic supervised classification problem, one can very easily try many classifiers, with the help of the scikit-learn library and so I did.
 
 The great advantage of such classifiers is the simplicity and ease in which they can be operated, but their disadvantages is their limitations on relatively small amounts of data, and the falling into biases.
-There are several ways we can try to overcome these problems, but in the frame of the course I didn't have enough time to try them in a satisfactory way. In the chapter 'Further work' I describe one way I guess it has a change to achieve better results on the same data.
+There are several ways we can try to overcome these problems, but in the frame of the course I didn't have enough time to try them in a satisfactory way. In the chapter "Further work" I describe one way I guess it has a change to achieve better results on the same data.
 
 ### Evaluation
 
@@ -132,8 +132,8 @@ Because this is a classification problem, there are common ways to evaluate succ
 Apart from the difference in results between different classifiers (in term of the learning methods), I used for the purpose of evaluation different types of features:
 - "Dummy" classifier - Always chooses the most common class which is the standard register.
 - "Naïve" classifier -  Uses only the rule of thumb of the sentence length, that is, classifies by a single feature of the length of the sentence (in characters).
-- Morphological classifier - Classified according to morphological features only.
-- Syntactic Classifier - Classified according to syntactic features only.
+- Morphological classifier - Classified according to the morphological features only.
+- Syntactic Classifier - Classified according to the syntactic features only.
 - Combined Classifier - Concatenates the morphological and syntactic feature vectors.
 
 #### Results
